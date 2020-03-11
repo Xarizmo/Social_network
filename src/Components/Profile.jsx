@@ -1,4 +1,5 @@
 import React from 'react';
+import './Profile.css';
 
 const Profile = () => {
     return <div className='content'>
@@ -17,7 +18,6 @@ const Profile = () => {
         <div>
             post2
         </div>
-
     </div>
 }
 
