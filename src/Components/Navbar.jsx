@@ -1,8 +1,8 @@
 import React from 'react';
-import './Navbar.css'
+import s from './Navbar.module.css'
 
 const Nav = () => {
-    return <nav className='nav'>
+    return <nav className={s.nav}>
         <div><a href="google.com">Profile</a></div>
         <div><a href="google.com">Messages</a></div>
         <div><a href="google.com">News</a></div>

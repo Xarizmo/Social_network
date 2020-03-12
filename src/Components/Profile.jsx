@@ -1,9 +1,9 @@
 import React from 'react';
-import './Profile.css';
+import s from './Profile.module.css';
 
 const Profile = () => {
-    return <div className='content'>
-        <div className='content-top-bg'>
+    return <div className={s.content}>
+        <div className={s.content_top_bg}>
 
         </div>
         <div>
