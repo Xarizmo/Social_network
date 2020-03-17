@@ -6,9 +6,9 @@ const Post = (props) => {
     <div className={s.item}>
       <img src="https://cdn.onlinewebfonts.com/svg/img_452489.png" alt=""/>
       <span>{props.message}</span>
-      <button>Like!</button>
       <br/>
-      <span>{props.likeCounts}</span>
+      <button>Like!</button>
+      <span>{props.likesCount}</span>
     </div>
   )
 }
