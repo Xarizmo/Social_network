@@ -6,12 +6,12 @@ const MyPosts = (props) => {
   
   let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
   
-  // создаем ссылку на элемент при помощи встроенных методов React
   let newPostElement = React.createRef();
   
   let addPost = () => {
     let text = newPostElement.current.value;
-    alert(text);
+    props.addPost(text);
+    newPostElement.current.value = '';
   };
   
   return (
