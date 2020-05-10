@@ -10,6 +10,7 @@ import News from "./Components/News/News";
 import Settings from "./Components/Settings/Settings";
 
 const App = (props) => {
+  debugger;
   return (
     <div className="app_wrapper">
       <Header/>
