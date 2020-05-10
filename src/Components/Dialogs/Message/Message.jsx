@@ -1,26 +1,10 @@
 import React from 'react';
-import s from './Message.module.css';
+import styles from './Message.module.css';
 
-const Message = (props) => {
-  
-  let newMessage = React.createRef();
-  
-  let addMessage = () => {
-    let text = newMessage.current.value;
-    alert(text);
-  }
-  
+export const Message = (props) => {
   return (
     <div>
-      <div className={s.message}>{props.messageText}</div>
-      <div>
-        <textarea ref={newMessage}></textarea>
-      </div>
-      <div>
-        <button onClick={addMessage}>Add message</button>
-      </div>
+      <div className={styles.message}>{props.messageText}</div>
     </div>
   )
 }
-
-export default Message;
