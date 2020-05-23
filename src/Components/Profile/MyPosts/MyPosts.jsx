@@ -22,12 +22,12 @@ const MyPosts = (props) => {
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea onChange={onPostChange}
+          <textarea onChange={ onPostChange }
                     ref={newPostElement}
                     value={props.newPostText}/>
         </div>
         <div>
-          <button onClick={onAddPost}>Add post</button>
+          <button onClick={ onAddPost }>Add post</button>
         </div>
       </div>
       <div>
