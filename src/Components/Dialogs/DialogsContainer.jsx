@@ -1,33 +1,27 @@
 import React from 'react';
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../storeContext";
+import {connect} from "react-redux";
 
-const DialogsContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {(store) => {
-        let state = store.getState().dialogsPage;
-        
-        let onSendMessageClick = () => {
-          store.dispatch(sendMessageActionCreator())
-        }
-        
-        let onNewMessageTextChange = (body) => {
-          store.dispatch(updateNewMessageTextActionCreator(body))
-        }
-        
-        return (
-          <Dialogs
-            updateNewMessageText={onNewMessageTextChange}
-            sendMessage={onSendMessageClick}
-            dialogsPage={state}
-          />
-        )
-      }
-      }
-    </StoreContext.Consumer>
-  )
-}
+let mapStateToProps = (state) => {
+  // возвращает объект, который настраивает получение данных из state
+  return {
+    dialogsPage: state.dialogsPage
+  }
+};
+
+let mapDispatchToProps = (dispatch) => {
+  // возвращает объект, который содержит коллбеки, которые мы будем отправлять в наш ПК
+  return {
+    sendMessage: () => {
+      dispatch(sendMessageActionCreator())
+    },
+    updateNewMessageText: (body) => {
+      dispatch(updateNewMessageTextActionCreator(body))
+    }
+  }
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
