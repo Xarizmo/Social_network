@@ -1,0 +1,66 @@
+.usersWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.user {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.userAvatarWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-right: 20px;
+    /*flex: 0 0 5px;*/
+}
+
+.userAvatar {
+    width: 75px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #666;
+}
+
+.followBtn {
+    /*margin-top: auto;*/
+    padding: 5px;
+}
+
+.userProfileWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 6px;
+}
+
+.userProfileInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.userProfileName {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userProfileJob {
+    margin-top: auto;
+}
+
+.showBtn {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 25px;
+    font-size: 18px;
+    border: 1px solid #666;
+    border-radius: 6px;
+}
