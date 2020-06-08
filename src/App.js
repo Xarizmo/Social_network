@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import {Route} from "react-router-dom";
-import Header from "./Components/Header/Header";
-import Nav from "./Components/Navbar/Navbar";
-import Profile from "./Components/Profile/Profile";
-import Music from "./Components/Music/Music";
-import News from "./Components/News/News";
-import Settings from "./Components/Settings/Settings";
-import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import UsersContainer from "./Components/Users/UsersContainer";
+import {Route} from 'react-router-dom';
+import Header from './Components/Header/Header';
+import Nav from './Components/Navbar/Navbar';
+import Music from './Components/Music/Music';
+import News from './Components/News/News';
+import Settings from './Components/Settings/Settings';
+import DialogsContainer from './Components/Dialogs/DialogsContainer';
+import UsersContainer from './Components/Users/UsersContainer';
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 const App = (props) => {
   return (
@@ -16,7 +16,7 @@ const App = (props) => {
       <Header/>
       <Nav/>
       <div className="app_wrapper_content">
-        <Route path='/profile' render={() => <Profile />} />
+        <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
         <Route path='/dialogs' render={() => <DialogsContainer />} />
         <Route path='/users' render={() => <UsersContainer />} />
         <Route path='/news' render={() => <News />} />
