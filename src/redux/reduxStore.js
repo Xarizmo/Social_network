@@ -3,16 +3,19 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
+import authReducer from './authReducer';
 
 // склеиваем reducers в одно целое
-let reducers = combineReducers({
+let rootReducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   sidebar: sidebarReducer,
-  usersPage: usersReducer
+  usersPage: usersReducer,
+  auth: authReducer,
 });
 
 // создаём store при помощи встроенной в Redux функции, в которую передаем объект с редьюсерами
-let store = createStore(reducers);
+let store = createStore(rootReducer);
+window.store = store;
 
 export default store;

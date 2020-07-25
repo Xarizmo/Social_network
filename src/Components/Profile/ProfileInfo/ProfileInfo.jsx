@@ -1,10 +1,12 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import { Puff } from 'svg-loaders-react';
+import { Emoji } from "../../common/Emoji/Emoji";
 
 const ProfileInfo = (props) => {
+  
   if (!props.profile) {
-    return <Puff stroke="#999999" />
+    return <Puff stroke="#999999"/>
   }
   
   return (
@@ -12,13 +14,13 @@ const ProfileInfo = (props) => {
       <div className={s.content_top_bg}>
       </div>
       <div>
-        <img src={props.profile.photos.large} alt='' />
+        <img src={props.profile.photos.large} alt=''/>
         <div>
           <span>{props.profile.aboutMe}</span>
           <span>Looking for a job:
             {props.profile.lookingForAJob
-            ? <span role="img" aria-label="yep">&#9989;</span>
-            : <span role="img" aria-label="none">&#10060;</span>
+              ? <Emoji symbol="✅" label="yep"/>
+              : <Emoji symbol="❌" label="none"/>
             }
           </span>
         </div>
