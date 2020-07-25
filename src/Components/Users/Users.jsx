@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.css';
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
 
 let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unfollow, follow }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
@@ -36,10 +37,32 @@ let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unf
                 {
                   u.followed
                     ? <button className={s.followBtn} onClick={() => {
-                      unfollow(u.id)
+                      axios
+                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "28a9f824-ecc3-4cc5-9015-9760c4dda242"
+                          }
+                        })
+                        .then(res => {
+                          if (res.data.resultCode === 0) {
+                            unfollow(u.id)
+                          }
+                        });
                     }}>Unfollow</button>
                     : <button className={s.followBtn} onClick={() => {
-                      follow(u.id)
+                      axios
+                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "28a9f824-ecc3-4cc5-9015-9760c4dda242"
+                          }
+                        })
+                        .then(res => {
+                          if (res.data.resultCode === 0) {
+                            follow(u.id)
+                          }
+                        });
                     }}>Follow</button>
                 }
               </div>
