@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Users.module.css';
 import { NavLink } from "react-router-dom";
-import axios from 'axios';
+import { usersAPI } from '../../api/api';
 
 let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unfollow, follow }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
@@ -31,35 +31,23 @@ let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unf
               <div className={s.userAvatarWrapper}>
                 <NavLink to={'profile/' + u.id}>
                   <img className={s.userAvatar}
-                        src={u.photos.small ? u.photos.small : "images/user-avatar.png"}
-                        alt=""/>
+                       src={u.photos.small ? u.photos.small : "images/user-avatar.png"}
+                       alt=""/>
                 </NavLink>
                 {
                   u.followed
                     ? <button className={s.followBtn} onClick={() => {
-                      axios
-                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "28a9f824-ecc3-4cc5-9015-9760c4dda242"
-                          }
-                        })
-                        .then(res => {
-                          if (res.data.resultCode === 0) {
+                      usersAPI.unfollow(u.id)
+                        .then(data => {
+                          if (data.resultCode === 0) {
                             unfollow(u.id)
                           }
                         });
                     }}>Unfollow</button>
                     : <button className={s.followBtn} onClick={() => {
-                      axios
-                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "28a9f824-ecc3-4cc5-9015-9760c4dda242"
-                          }
-                        })
-                        .then(res => {
-                          if (res.data.resultCode === 0) {
+                      usersAPI.follow(u.id)
+                        .then(data => {
+                          if (data.resultCode === 0) {
                             follow(u.id)
                           }
                         });
