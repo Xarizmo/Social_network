@@ -3,7 +3,7 @@ import s from './Users.module.css';
 import { NavLink } from "react-router-dom";
 import { usersAPI } from '../../api/api';
 
-let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unfollow, follow }) => {
+let Users = ({ users, pageSize, totalUsersCount, currentPage, followingInProgress, onPageChanged, follow, unfollow, toggleFollowingProgress }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
   
@@ -36,22 +36,32 @@ let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, unf
                 </NavLink>
                 {
                   u.followed
-                    ? <button className={s.followBtn} onClick={() => {
-                      usersAPI.unfollow(u.id)
-                        .then(data => {
-                          if (data.resultCode === 0) {
-                            unfollow(u.id)
-                          }
-                        });
-                    }}>Unfollow</button>
-                    : <button className={s.followBtn} onClick={() => {
-                      usersAPI.follow(u.id)
-                        .then(data => {
-                          if (data.resultCode === 0) {
-                            follow(u.id)
-                          }
-                        });
-                    }}>Follow</button>
+                    ? <button
+                      disabled={followingInProgress.some(id => id === u.id)}
+                      className={s.followBtn}
+                      onClick={() => {
+                        toggleFollowingProgress(true, u.id);
+                        usersAPI.unfollow(u.id)
+                          .then(data => {
+                            if (data.resultCode === 0) {
+                              unfollow(u.id)
+                            }
+                            toggleFollowingProgress(false, u.id);
+                          });
+                      }}>Unfollow</button>
+                    : <button
+                      disabled={followingInProgress.some(id => id === u.id)}
+                      className={s.followBtn}
+                      onClick={() => {
+                        toggleFollowingProgress(true, u.id);
+                        usersAPI.follow(u.id)
+                          .then(data => {
+                            if (data.resultCode === 0) {
+                              follow(u.id)
+                            }
+                            toggleFollowingProgress(false, u.id);
+                          });
+                      }}>Follow</button>
                 }
               </div>
               <div className={s.userProfileWrapper}>
