@@ -2,7 +2,16 @@ import React from 'react';
 import s from './Users.module.css';
 import { NavLink } from "react-router-dom";
 
-let Users = ({ users, pageSize, totalUsersCount, currentPage, followingInProgress, onPageChanged, follow, unfollow }) => {
+let Users = ({
+               users,
+               pageSize,
+               totalUsersCount,
+               currentPage,
+               followingInProgress,
+               onPageChanged,
+               follow,
+               unfollow
+             }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
   

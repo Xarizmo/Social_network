@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
-  followSuccess,
-  unfollowSuccess,
   setCurrentPage,
-  toggleFollowingProgress,
   getUsers,
-  changePage, follow, unfollow
+  changePage,
+  follow,
+  unfollow
 } from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import Users from './Users';
@@ -52,10 +51,8 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps,
-  { followSuccess,
-    unfollowSuccess,
+  {
     setCurrentPage,
-    toggleFollowingProgress,
     getUsers,
     changePage,
     follow,
